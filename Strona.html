@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pl">
+<html>
+	<head>
+		<meta charset="utf-8" />
+		
+	
+		
+		<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+		
+		<script type="text/javascript">
+		
+			var numer = Math.floor(Math.random()*5)+1;
+			
+			var timer1 = 0;
+			var timer2 = 0;
+			
+			function ustawslajd(nrslajdu)
+			{
+				clearTimeout(timer1);
+				clearTimeout(timer2);
+				numer = nrslajdu - 1;
+				
+				schowaj();
+				setTimeout("zmienslajd()", 500);
+				
+			}
+			
+			function schowaj()
+			{
+				$("#slider").fadeOut(500);
+				$("#description").fadeOut(500);
+				$("#description").fadeIn(400);
+			}
+		
+			function zmienslajd()
+			{
+				
+				numer++; 
+				
+				if (numer>5) numer=1;
+				
+				var plik = "<img src=\"slajdy/slajd" + numer + ".png\" />";
+				
+				document.getElementById("slider").innerHTML = plik;
+				
+				var opis1 = 'Ten obrazek pod plandeką już pewnie gdzieś widzieliście. To oczywiście Mona Lisa, pędzla Leonarda da Vinci. W ten sposób została przetransportowana po II wojnie światowej z powrotem do Luwru.';
+				var opis2 = 'Tama Hoovera to ogromne przedsięwzięcie architektoniczne. Na zdjęciu widzicie, jak była wypełniana cementem w lutym 1934 roku.';
+				var opis3 = 'Mimo tego że Statua Wolności stoi w Nowym Jorku, została stworzona w Paryżu. Tak wyglądała wielka rzeźba podczas konstruowania w 1884 roku.';
+                var opis4 = 'Na zdjęciu jest około 100 osób, biorących udział w loterii na podział 12 arów ziemi, na której powstał później Tel Aviv. (1909)';
+                var opis5 = 'Ta scena pokazuje zdjęcia martwego bossa mafii - Joe Maserii, który leżał na podłodze brooklińskiej restauracji, trzymając w dłoniach asa pik. Ta karta jest znana jako symbol śmierci. Niezła ironia, co?';
+
+
+				
+				if(numer ==1)
+				document.getElementById("description").innerHTML = opis1;
+				else if(numer==2)
+				document.getElementById("description").innerHTML = opis2;
+				else if(numer==3)
+				document.getElementById("description").innerHTML = opis3;
+				else if(numer==4)
+				document.getElementById("description").innerHTML = opis4;
+				else if(numer==5)
+				document.getElementById("description").innerHTML = opis5;
+				
+				$("#slider").fadeIn(500);
+				
+				timer1 = setTimeout("zmienslajd()", 5000);
+				timer2 = setTimeout("schowaj()", 4500);
+			
+			}
+			
+		</script>
+		<link rel="stylesheet" href="style.css" type="text/css" />
+	<link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		
+	</head>
+	<body onload="zmienslajd()">
+	<div id="container">
+	<div id="menu">
+	5 historycznych zdjęć, których prawdopodobnie nie znaliście! 
+	</div>
+	
+			<div id="menu">
+		<span onclick="ustawslajd(1)" style="cursor:pointer;">[ 1 ]</span>
+		<span onclick="ustawslajd(2)" style="cursor:pointer;">[ 2 ]</span>
+		<span onclick="ustawslajd(3)" style="cursor:pointer;">[ 3 ]</span>
+		<span onclick="ustawslajd(4)" style="cursor:pointer;">[ 4 ]</span>
+		<span onclick="ustawslajd(5)" style="cursor:pointer;">[ 5 ]</span>
+	</div>	
+
+		<div id="slider"></div>
+	<div id="description"></div>
+		</div>
+	</body>
+</html>
